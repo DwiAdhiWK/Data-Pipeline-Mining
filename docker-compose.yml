@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  db:
+    image: postgres
+    container_name: postgres_container
+    restart: always
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mitra_db
+    volumes:
+      - local_pgdata:/var/lib/postgresql
+    healthcheck: 
+      test: ["CMD-SHELL", "pg_isready -U user -d mitra_db"]
+ 
+
+volumes:
+  local_pgdata:
