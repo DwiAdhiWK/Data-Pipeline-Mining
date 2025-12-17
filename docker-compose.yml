@@ -14,7 +14,22 @@ services:
       - local_pgdata:/var/lib/postgresql
     healthcheck: 
       test: ["CMD-SHELL", "pg_isready -U user -d mitra_db"]
- 
-
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment: 
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase_app
+      MB_DB_PORT: 5432
+      MB_DB_USER: user
+      MB_DB_PASS: postgres
+      MB_DB_HOST: db
+    volumes:
+    - /dev/urandom:/dev/random:ro
 volumes:
   local_pgdata:
