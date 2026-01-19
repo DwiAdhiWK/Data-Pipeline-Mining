@@ -1,4 +1,4 @@
-# Mining Parts Data Warehouse 
+# Mining Equipment Parts Data Pipeline
 An end-to-end ETL pipeline project for mining equipment parts
 
 # Repository Outline
